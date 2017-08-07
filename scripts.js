@@ -141,7 +141,6 @@ class Cedula {
     return this;
   }
 }
-
 // Funcion para limpiar los inputs
 function blanquearInputsYTips(){
   blanquearInput("direccion[1]");
@@ -176,10 +175,6 @@ function setearOpcionesDelMapaPorDefault(map) {
 // funcion para volver el cursor al imput direccion
 function setearCursorEnCampoDireccion() {
   document.getElementById("direccion[1]").focus();
-}
-// TODO: funcion para exportar tabla a CSV
-function exportarExcel(tabla) {
-  console.log(document.getElementById(tabla));
 }
 //cargar info de las zonas
 function cargarDataSobreZonas(){
