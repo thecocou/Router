@@ -1,0 +1,176 @@
+* {
+  box-sizing: border-box;
+  font-family: Tahoma;
+}
+
+html {
+  height: auto;
+  width: 80%;
+}
+
+body {
+  background-image: url(img/cartographerb.png);
+}
+
+#logo {
+  padding: 15px 10px 10px 20px;
+}
+
+#sitio {
+  width: 1000px;
+  margin: 30px auto;
+}
+
+#contenedor {
+  display: inline-block;
+  position: relative;
+  width: 800px;
+  background-color: rgba(167,163,126,0.5);
+  border: 0.5px solid rgba(136,0,77,1);
+	border-radius: 20px 20px 0 0;
+}
+
+#barraLateral {
+  display: inline-block;
+  position: absolute;
+	float: right;
+  margin: 20px;
+  height: 700px;
+  overflow: auto;
+}
+
+#encabezado {
+	height: 65px;
+	width: 800px;
+	background-color: rgba(160,43,74,0.9);
+	border-radius: 20px 20px 0 0;
+  margin-bottom: 5px;
+}
+
+.buscador input[type=text]{
+  display: inline-block;
+  float: left;
+  padding: 10px;
+  width: 90%;
+  background-color: #eee;
+  border:1px solid #A7A37E;
+}
+
+.buscador input[type=submit]{
+  display: inline-block;
+  float: right;
+	width: 10%;
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+  background-color: #fc594f;
+  border: 1px solid #A7A37E;
+}
+
+.buscador input[type=submit]:hover {
+    background-color: #FF2C0D;
+}
+
+
+
+#map {
+  display: inline-block;
+	height: 600px;
+	width: 800px;
+	margin-top: 5px;
+}
+
+.nombreZona {
+	border: 1px solid;
+  text-align: center;
+  padding: 0px;
+  margin: 20px;
+  width: 500px;
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.cedulaStyle {
+  text-align: center;
+  background-color: white;
+  color: black;
+  font-size: 15px;
+  font-weight: normal;
+}
+
+#tips {
+  text-align: center;
+  color: #336798;
+  padding: 20px;
+  font-size: 15px;
+}
+
+table {
+  border-radius: 20px 20px 0 0 ;
+}
+
+#numorden {
+  width: 5%;
+}
+
+@keyframes change-color {
+  0%   { background-color: 	#00FF00;
+          color: red;}
+  50%   { background-color: white; }
+  75%   { background-color: #00FF00; }
+  100% { background-color: white;
+          color: black;}
+}
+
+
+.col {
+  border-collapse: collapse;
+  width: 33%;
+  padding: 5px;
+  animation: change-color 5s forwards;
+}
+
+.notbold {
+  font-weight: normal;
+}
+
+th {
+  padding: 10px;
+}
+
+.marcadorIcon {
+  position: absolute;
+  margin: -10px -10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50% 50% 50% 0;
+  border: 0;
+  background: #grey;
+  transform: rotate(-45deg);
+  cursor: pointer;
+}
+
+.activo {
+  background: #fc594f;
+}
+
+
+.botonEliminar {
+  width: 20px;
+  height: 20px;
+  color: white;
+  background-color: RGB(255, 0, 17);
+  cursor: pointer;
+  border-radius: 100%;
+  border: 0;
+}
+
+.descargar {
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid #A7A37E;
+  background-color: grey;
+  padding: 5px;
+  color: white;
+}
