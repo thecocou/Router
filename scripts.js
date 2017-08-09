@@ -6,23 +6,18 @@ function initRouter(){
       enrutador = new google.maps.DirectionsService;
       displayRoutes = new google.maps.DirectionsRenderer({map: Mapa});
       botonEnrutar = document.getElementById('enrutar');
-      direccion = [];
 
   // Al hacer click en buscar geocodificar la direccion
   botonEnrutar.addEventListener("click", function() {
 
-    for (i = 0; i < 4; i++) {
-      if (document.getElementById('direccion[' + i + ']').value !== "") {
-        direccion[i] = document.getElementById('direccion[' + i + ']').value;
-        console.log(direccion);
-      }
-    }
+    var direcciones = getDirecciones();
+    var waypoints = getWaypoints(direcciones);
 
-    mostrarRuta(direccion);
+    mostrarRuta(direcciones, waypoints);
 
     setearOpcionesDelMapaPorDefault(Mapa);
     setearCursorEnCampoDireccion();
-    blanquearInputsYTips();
+    //blanquearInputsYTips();
   });
 }
 
@@ -36,18 +31,34 @@ function cargarMapa() {
   return Mapa;
 }
 
-/*
-function mostrarRuta(direcciones) {
+// FUNCION PARA OBTENER LAS DIRECCIONES
+function getDirecciones() {
+  let direccion = [];
+  for (let i = 0; i < 4; i++) {
+    if (document.getElementById('direccion[' + i + ']').value !== "") {
+      direccion[i] = document.getElementById('direccion[' + i + ']').value + ", Capital Federal";
+    }
+  }
+  return direccion;
+}
+
+// FUNCION PARA OBTENER WAYPOINTS
+function getWaypoints(direccion) {
+  let waypoint = [];
+  for(let n = 1; n < direccion.length - 1; n++) {
+    waypoint[n - 1] = {location: direccion[n], stopover: true,};
+  }
+  return waypoint;
+}
+
+// FUNCION PARA MOSTRAR LA RUTA
+function mostrarRuta(direccion, waypoint) {
   enrutador.route({
-    origin: direcciones[0],
-    destination: direcciones[length],
+    origin: direccion[0],
+    destination: direccion[direccion.length - 1],
     travelMode: "WALKING",
     transitOptions: {routingPreference: "LESS_WALKING"},
-    waypoints: [
-      {direcciones[0]},
-      {direcciones[1]},
-      {direcciones[2]}
-    ],
+    waypoints: waypoint,
     optimizeWaypoints: true,
     region: "AR"
   }, function(response, status) {
@@ -58,7 +69,6 @@ function mostrarRuta(direcciones) {
     }
   });
 }
-*/
 
 /*
 function computeTotalDistance(result) {
