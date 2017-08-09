@@ -37,11 +37,11 @@ function cargarMapa() {
   });
   return Mapa;
 }
-/*
+
 function mostrarRuta(origin, destination) {
   enrutador.route({
-    origin: "Capital Federal",
-    destination: "Capital Federal",
+    origin: origin,
+    destination: destination,
     travelMode: "WALKING",
     transitOptions: {routingPreference: "LESS_WALKING"},
     waypoints[3]: DirectionsWaypoint: [
@@ -59,7 +59,7 @@ function mostrarRuta(origin, destination) {
     }
   });
 }
-*/
+
 /*
 function computeTotalDistance(result) {
   var total = 0;
