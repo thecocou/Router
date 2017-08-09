@@ -20,7 +20,7 @@ function initRouter(){
     }
     console.log(direccion);
 
-//    mostrarRuta(direccion[0], direccion[direccion.lenght]);
+    mostrarRuta(direccion[0], direccion[direccion.lenght]);
 
     setearOpcionesDelMapaPorDefault(Mapa);
     setearCursorEnCampoDireccion();
