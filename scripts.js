@@ -6,17 +6,13 @@ function initRouter(){
       enrutador = new google.maps.DirectionsService;
       displayRoutes = new google.maps.DirectionsRenderer({map: Mapa});
       botonEnrutar = document.getElementById('enrutar');
-      direccion = [];
-
-      console.log(direccion);
+      direccion;
 
   // Al hacer click en buscar geocodificar la direccion
   botonEnrutar.addEventListener("click", function() {
 
     for (i = 0; i < 23; i++) {
-      if(document.getElementById('direccion['i']').value !== ""){
-        var direccion[i] = document.getElementById('direccion['i']').value;
-      }
+      var direccion[i] = document.getElementById('direccion['i']').value;
     }
     console.log(direccion);
 
