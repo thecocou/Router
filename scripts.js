@@ -6,17 +6,19 @@ function initRouter(){
       enrutador = new google.maps.DirectionsService;
       displayRoutes = new google.maps.DirectionsRenderer({map: Mapa});
       botonEnrutar = document.getElementById('enrutar');
-      direccion;
+      direccion = [];
 
   // Al hacer click en buscar geocodificar la direccion
   botonEnrutar.addEventListener("click", function() {
 
-    for (i = 0; i < 23; i++) {
-      var direccion[i] = document.getElementById('direccion['i']').value;
+    for (i = 0; i < 4; i++) {
+      if (document.getElementById('direccion[' + i + ']').value !== "") {
+        direccion[i] = document.getElementById('direccion[' + i + ']').value;
+        console.log(direccion);
+      }
     }
-    console.log(direccion);
 
-    mostrarRuta(direccion[0], direccion[direccion.lenght]);
+    mostrarRuta(direccion);
 
     setearOpcionesDelMapaPorDefault(Mapa);
     setearCursorEnCampoDireccion();
@@ -34,16 +36,17 @@ function cargarMapa() {
   return Mapa;
 }
 
-function mostrarRuta(origin, destination) {
+/*
+function mostrarRuta(direcciones) {
   enrutador.route({
-    origin: origin,
-    destination: destination,
+    origin: direcciones[0],
+    destination: direcciones[length],
     travelMode: "WALKING",
     transitOptions: {routingPreference: "LESS_WALKING"},
-    waypoints[3]: DirectionsWaypoint: [
-      {document.getElementById('direccion[0]').value},
-      {document.getElementById('direccion[1]').value},
-      {document.getElementById('direccion[2]').value}
+    waypoints: [
+      {direcciones[0]},
+      {direcciones[1]},
+      {direcciones[2]}
     ],
     optimizeWaypoints: true,
     region: "AR"
@@ -55,6 +58,7 @@ function mostrarRuta(origin, destination) {
     }
   });
 }
+*/
 
 /*
 function computeTotalDistance(result) {
