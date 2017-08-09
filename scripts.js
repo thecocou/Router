@@ -17,7 +17,6 @@ function initRouter(){
 
     setearOpcionesDelMapaPorDefault(Mapa);
     setearCursorEnCampoDireccion();
-    //blanquearInputsYTips();
   });
 }
 
@@ -80,78 +79,6 @@ function computeTotalDistance(result) {
   total = total / 1000;
   document.getElementById('total').innerHTML = total + ' km';
 }*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-// CLASE RUTA
-class Ruta {
-  constructor(Mapa) {
-    this.direccion = document.getElementById('direccion[0]').value;
-    this.Marcador = new google.maps.Marker({map: Mapa});
-    this.zona = "Capital Federal";
-    this.HTMLement = document.createElement("tr");
-  }
-  // Metodo para geocodificar la direccion
-  enrutarDirecciones(Geocoder, Zonas) {
-    let self = this;
-    Geocoder.geocode({'address': self.direccion + ", Capital Federal", componentRestrictions:{'locality': "Capital Federal"}}, function(results, status) {
-      if (status === google.maps.GeocoderStatus.OK) {        // si google pudo geocodificar la direccion
-        var latlng = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
-        self.Marcador.setPosition(results[0].geometry.location);                // ubicar marcador
-        self.imprimirRutasEnHTML().scrollHastaElemento();      // Agregar la cedula al html y hacer Scroll hasta esta
-      } else {
-        alert('No pude encontrar la direccion por el siguiente motivo: ' + status);
-      }
-    });
-    return this;
-  }
-  // metodo PARA mostrar la DIRECCION en la ZONA
-  imprimirRutasEnHTML(){
-    let self = this;
-    self.HTMLement.className = "cedulaStyle"; // le asigno la clase
-    self.HTMLement.innerHTML = "<td class='col' id='numorden'>" + document.getElementById(self.zona).rows.length +
-      "<td class='col'>" + self.direccion + "</td><td class='col'>" +
-      "<input type='button' class='botonEliminar' value='X' onclick='eliminarRow(this)'></td>"; // creo las celdas
-    document.getElementById(self.zona).appendChild(self.HTMLement); // asigno las celdas a la tabla
-    return this;
-  }
-  // Mostrar / Ocultar el Marcador en el Mapa
-  switchVisibilidadDeMarcador() {
-    let self = this;
-    self.Marcador.getVisible() ? self.Marcador.setVisible(false) : self.Marcador.setVisible(true);
-    return this;
-  }
-  // Scroll hasta la ultima cedula agregada
-  scrollHastaElemento() {
-    let self = this;
-    let element = self.HTMLement;
-    element.scrollIntoView(false);
-    return this;
-  }
-}*/
-
-// Funcion para limpiar los inputs
-function blanquearInputsYTips(){
-  blanquearInput("direccion[0]");
-  eliminarElemento("tips");
-}
 
 // FUNCION PARA ELIMINAR UN ELEMENTO
 function eliminarElemento(elemento){
