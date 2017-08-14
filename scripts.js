@@ -50,7 +50,7 @@ function getWaypoints(direccion) {
 
   if (direccion.length > 2) {
     for(let n = primerWaypoint; n < ultimoWaypoint; n++) {
-      waypoint.push({location: direccion[n], stopover: true},);
+      waypoint.push({location: direccion[n]},);
     }
   }
   return waypoint;
@@ -61,7 +61,7 @@ function mostrarRuta(directionsService, directionsDisplay, direccion, waypoint) 
   directionsService.route({
     origin: direccion[0],
     destination: direccion[direccion.length - 1],
-    waypoints: [{location: "rocha 1800, capital federal"}, {location: "lamadrid 700, capital federal"}],
+    waypoints: waypoints,
     optimizeWaypoints: true,
     region: "AR",
     travelMode: "WALKING",
