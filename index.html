@@ -8,22 +8,12 @@
 
 	<body>
 		<div id=sitio>
-			<div id=contenedor>
-				<!-- titulo -->
-				<div id="encabezado">
-					<img id="logo" src="img/logozoner2.png" width="150px" height="70px"/>
-				</div>
-				<div id="map">	<!-- cargo mapa -->
-					<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzZ1fE-TTLdTQPWY08zGv4at4Lso4j-2c&callback=initRouter"></script>
-				</div>
-			</div>
-
 			<!-- Barra lateral -->
 			<div id="barraLateral">
-					<p id="tips">Ingresa hasta 25 direcciones para crear una ruta.</br></p>
-					<!-- buscador -->
-					<div id="cajaLateral">
-						<div class="buscador">
+				<p id="tips">Ingresa hasta 25 direcciones para crear una ruta.</br></p>
+				<!-- buscador -->
+				<div id="cajaLateral">
+					<div class="buscador">
 							<input id="enrutar" type="submit" value="Enrutar"/>
 							<input id="direccion[0]" class="inputs" placeholder="Ingrese direccion 1" type="text" onkeydown="if (event.keyCode == 13) document.getElementById('enrutar').click()"/>
 							<input id="direccion[1]" class="inputs" placeholder="Ingrese direccion 2" type="text" onkeydown="if (event.keyCode == 13) document.getElementById('enrutar').click()"/>
@@ -50,10 +40,19 @@
 							<input id="direccion[22]" class="inputs" placeholder="Ingrese direccion 23" type="text" onkeydown="if (event.keyCode == 13) document.getElementById('enrutar').click()"/>
 							<input id="direccion[23]" class="inputs" placeholder="Ingrese direccion 24" type="text" onkeydown="if (event.keyCode == 13) document.getElementById('enrutar').click()"/>
 							<input id="direccion[24]" class="inputs" placeholder="Ingrese direccion 25" type="text" onkeydown="if (event.keyCode == 13) document.getElementById('enrutar').click()"/>
-
 						</div>
 					</div>
 				</div>
-		</div>
+
+				<div id=contenedor>
+						<!-- titulo -->
+						<div id="encabezado">
+							<img id="logo" src="img/logozoner2.png" width="150px" height="70px"/>
+						</div>
+						<div id="map">	<!-- cargo mapa -->
+							<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzZ1fE-TTLdTQPWY08zGv4at4Lso4j-2c&callback=initRouter"></script>
+						</div>
+					</div>
+			</div>
 	</body>
 </html>

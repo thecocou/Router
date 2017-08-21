@@ -1,10 +1,10 @@
 /*jshint esversion: 6*/
 
-function initRouter(){
+function initRouter() {
   // Cargo Mapa
   var Mapa = cargarMapa();
   // Cargo Direction Service
-  Enrutador = new google.maps.DirectionsService;
+  Enrutador = new google.maps.DirectionsService();
   // Cargo Directions Renderer
   ImpresoraDeRutas = new google.maps.DirectionsRenderer({map: Mapa});
 
@@ -50,7 +50,7 @@ function getWaypoints(direccion) {
 
   if (direccion.length > 2) {
     for(let n = primerWaypoint; n < ultimoWaypoint; n++) {
-      waypoint.push({location: direccion[n]},);
+      waypoint.push({location: direccion[n]});
     }
   }
   return waypoint;
