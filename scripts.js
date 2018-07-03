@@ -66,11 +66,36 @@ function mostrarRuta(directionsService, directionsDisplay, direccion, waypoint) 
     region: "AR",
     travelMode: "WALKING",
   }, function(response, status) {
-    console.log(response);
+      console.log(response);
+      mostrarDireccionesEnOrden(response);
+
     if (status === 'OK') {
       directionsDisplay.setDirections(response);
     } else {
       alert('No es posible mostrar la ruta por lo siguiente: ' + status);
     }
   });
+}
+
+// FUNCION PARA MOSTRAR DIRECCIONES EN ORDEN
+function mostrarDireccionesEnOrden(respuesta){
+  let resultElement = document.getElementById("barraLateral");
+  let rutas = [];
+  let abc = ["B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+  let n = 0;
+  
+  respuesta.routes[0].legs.forEach((element) => {
+    rutas.push(abc[n] + ": </b>" + element.end_address);
+    console.log(abc[n] + ": " + element.end_address);
+    n++;
+  });
+
+  console.log(rutas);
+  
+  resultElement.innerHTML = "";
+
+  rutas.forEach((direccion) => {
+    resultElement.innerHTML += "<tr><td><p id='direcciones'><b>" + direccion + "</p></td></tr>";
+  });
+
 }
