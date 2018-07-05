@@ -3,8 +3,8 @@
 }
 
 html {
-  height: 99%;
-  width: 99%;
+  height: 100%;
+  width: 100%;
   margin: auto;
 }
 
@@ -19,61 +19,21 @@ body {
   height: inherit;
   width: inherit;
   display: grid;
-  grid-template-areas:
-    'tt mp mp mp mp mp mp mp mp'
-    'sb mp mp mp mp mp mp mp mp'
-    'sb mp mp mp mp mp mp mp mp'
-    'sb mp mp mp mp mp mp mp mp'
-    'sb mp mp mp mp mp mp mp mp'
-    'sb mp mp mp mp mp mp mp mp'
-    'sb mp mp mp mp mp mp mp mp'
-    'sb mp mp mp mp mp mp mp mp'
-    'sb mp mp mp mp mp mp mp mp'
-    'sb mp mp mp mp mp mp mp mp'
-    'x x x x x x x x x';
+  grid-template: repeat(20, 5%) / repeat(20, 5%);
+  justify-content: stretch;
+  align-content: stretch;
 }
 
 #encabezado {
-  grid-area: tt;
+  grid-column: 2 / 6;
+  grid-row: 2 / 4;
   background-color: rgba(255, 37, 99, 0.7);
 }
 
-#barraLateral {
-  grid-area: sb;
-  display: flex;
-  flex-direction: column;
-  
-}
-
-#direcciones {
-    height: 4%;
-    font-size: 80%;
-    background-color: #eee;
-    border: 1px solid white;
-/*    padding: 5px;
-*/    margin: 0;
-}
-
-#barraLateral input[type=text] {
-  height: 4%;
-  background-color: #eee;
-  border: 1px solid white;
-}
-
-#barraLateral input[type=submit] {
-  height: 4%;
-  color: white;
-  cursor: pointer;
-  background-color: #fc594f;
-  border: 1px solid #A7A37E;
-}
-
-#barraLateral input[type=submit]:hover {
-  background-color: #FF2C0D;
-}
-
-#map {
-  grid-area: mp;
+#logo {
+  display: block;
+  margin: auto;
+  height: 3rem;
 }
 
 #tips {
@@ -83,8 +43,51 @@ body {
   margin: auto;
 }
 
-#logo {
-  display: block;
-  margin: auto;
-  height: 3rem;
+#barraLateral {
+  grid-column: 2 / 6;
+  grid-row: 4 / 19;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+#boton {
+  grid-column: 2 / 6;
+  grid-row: 19 / 20;
+}
+
+#barraLateral input[type=text] {
+  height: 100%;
+  background-color: #eee;
+  border: 1px solid white;
+}
+
+#boton input[type=submit] {
+  height: 100%;
+  width: 100%;
+  color: white;
+  cursor: pointer;
+  background-color: #fc594f;
+  border: 0px;
+}
+
+#boton input[type=submit]:hover {
+  background-color: #FF2C0D;
+}
+
+#direcciones {
+  height: 4%;
+  font-size: 80%;
+  background-color: #eee;
+  border: 1px solid white;
+  margin: 0;
+  padding: 2px 0px 2px 10px;
+}
+
+#map {
+    grid-column: 6 / 20;
+    grid-row: 2 / 20;
+    background-color: #eee;
+    border: 2px solid white;
+    z-index: 2;
 }
