@@ -38,7 +38,6 @@ function agregarInputs(barraLateral, botonEnrutar) {
   }
 }
 
-
 // FUNCION PARA OBTENER LAS DIRECCIONES
 function getDirecciones() {
   let direccion = [];
@@ -88,20 +87,28 @@ function mostrarRutaEnMapa(directionsService, directionsDisplay, direccion, wayp
 // FUNCION PARA MOSTRAR DIRECCIONES EN ORDEN
 function mostrarRutaEnBarraLateral(respuesta){
   let rutas = [];
-  let abc = ["B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+  let abc = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
   let n = 0;
   
-  respuesta.routes[0].legs.forEach((element) => {
-    rutas.push(abc[n] + ": " + element.end_address);
-    n++;
-  });
+  // agrego la direccion de salida
+  rutas.push(respuesta.routes[0].legs[0].start_address);
 
-  console.log(rutas);
+  // agrego el resto de las direcciones
+  respuesta.routes[0].legs.forEach((element) => {
+      rutas.push(element.end_address);
+  });
   
+  // borro la barra lateral
   barraLateral.innerHTML = "";
 
+  // escribo las direcciones en la barra lateral
   rutas.forEach((direccion) => {
-    barraLateral.innerHTML += "<tr><td><p id='direcciones'>" + direccion + "</p></td></tr>";
+    barraLateral.innerHTML += "<tr><td><p id='direcciones'>" + abc[n] + ": " + direccion + "</p></td></tr>";
+    n++;
   });
-
 }
+
+// ToDo:
+// Editar lista de direcciones
+// Seleccionar automaticamente las direcciones mas alejadas para usarlas como inicio y fin de la ruta.
+// estilos
