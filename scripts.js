@@ -103,12 +103,11 @@ function mostrarRutaEnBarraLateral(respuesta){
 
   // escribo las direcciones en la barra lateral
   rutas.forEach((direccion) => {
-    barraLateral.innerHTML += "<tr><td><p id='direcciones'>" + abc[n] + ": " + direccion + "</p></td></tr>";
+    barraLateral.innerHTML += "<tr><td><p id='letras'>" + abc[n] + ": </p></td><td><input id='direccion[" + n + "]' class='inputs' value='" + direccion + "' type='text' onkeydown='if (event.keyCode == 13) document.getElementById("+'"enrutar"'+").click()'/></td></tr>"
     n++;
   });
 }
 
 // ToDo:
-// Editar lista de direcciones
 // Seleccionar automaticamente las direcciones mas alejadas para usarlas como inicio y fin de la ruta.
 // estilos
