@@ -5,7 +5,7 @@ function initRouter() {
   let barraLateral = document.getElementById("barraLateral");
 
   // Cargo Inputs
-  agregarInputs(barraLateral, botonEnrutar);
+  agregarInputs(barraLateral);
   // Cargo Mapa
   let Mapa = cargarMapa();
   // Cargo Direction Service
@@ -17,24 +17,23 @@ function initRouter() {
   botonEnrutar.addEventListener("click", function() {
     let direcciones = getDirecciones();
     let waypoints = getWaypoints(direcciones);
-    mostrarRutaEnMapa(Enrutador, ImpresoraDeRutas, direcciones, waypoints, barraLateral);
+    mostrarRutaEnMapa(Enrutador, ImpresoraDeRutas, direcciones, waypoints);
   });
 }
 
 // FUNCION PARA INICIAR EL MAPA
 function cargarMapa() {
-  var Mapa = new google.maps.Map(document.getElementById('map'), {
+  return new google.maps.Map(document.getElementById('map'), {
     center: {lat:-34.618356, lng:-58.433464},
-    zoom: 12,
+    zoom: 12.3,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
   });
-  return Mapa;
 }
 
 // FUNCION PARA AGREGAR INPUTS
-function agregarInputs(barraLateral, botonEnrutar) {
+function agregarInputs(barraLateral) {
   for(i = 0; i < 25; i++) {
-    barraLateral.innerHTML += "<input id='direccion[" + i + "]' class='inputs' placeholder='Ingrese direccion' type='text' onkeydown='if (event.keyCode == 13) document.getElementById("+'"enrutar"'+").click()'/>";
+    barraLateral.innerHTML += "<input id='direccion[" + i + "]' class='inputs' placeholder='Ingrese una direccion' type='text' onkeydown='if (event.keyCode == 13) document.getElementById("+'"enrutar"'+").click()'/>";
   }
 }
 
@@ -97,7 +96,14 @@ function mostrarRutaEnBarraLateral(respuesta){
   respuesta.routes[0].legs.forEach((element) => {
       rutas.push(element.end_address);
   });
-  
+
+  // agrego los inputs restantes
+  if (rutas.length < 25) {
+    for (z = rutas.length; z < 25; z++) {
+      rutas.push("");
+    }      
+  }
+
   // borro la barra lateral
   barraLateral.innerHTML = "";
 
