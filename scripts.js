@@ -25,7 +25,7 @@ function initRouter() {
 function cargarMapa() {
   return new google.maps.Map(document.getElementById('map'), {
     center: {lat:-34.618356, lng:-58.433464},
-    zoom: 12.3,
+    zoom: 12,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
   });
 }
