@@ -1,5 +1,8 @@
 * {
   font-family: Tahoma;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 html {
@@ -32,11 +35,29 @@ body {
   background-color: rgba(0, 37, 99, 0.7);
 }
 
+#distancia {
+  color: white;
+  font-size: 80%;
+  grid-column: 16 / 20;
+  grid-row: 1 / 2;
+  margin: auto;
+  text-align: center;
+}
+
+#tiempo {
+  color: white;
+  font-size: 80%;
+  grid-column: 11 / 15;
+  grid-row: 1 / 2;
+  margin: auto;
+  text-align: center;
+}
+
 #logo {
   display: block;
-  margin: auto auto;
+  margin: auto 8%;
   height: 100%;
-}
+ }
 
 #tips {
   text-align: center;

@@ -65,7 +65,7 @@ function getWaypoints(direccion) {
 }
 
 // FUNCION PARA MOSTRAR LA RUTA
-function mostrarRutaEnMapa(directionsService, directionsDisplay, direccion, waypoint) {
+function mostrarRutaEnMapa(directionsService, directionsDisplay, direccion, waypoint, botonDistancia) {
   directionsService.route({
     origin: direccion[0],
     destination: direccion[direccion.length - 1],
@@ -77,11 +77,31 @@ function mostrarRutaEnMapa(directionsService, directionsDisplay, direccion, wayp
     if (status === 'OK') {
       directionsDisplay.setDirections(response);
       mostrarRutaEnBarraLateral(response);
+      calcularTiempoyDistancia(response);
     } else {
       alert('No es posible mostrar la ruta por lo siguiente: ' + status);
     }
   });
 }
+
+
+// FUNCION PARA MOSTRAR TIEMPO Y DISTANCIAS
+function calcularTiempoyDistancia(respuesta){
+  var totalDist = 0;
+  var totalTime = 0;
+   
+  respuesta.routes[0].legs.forEach((element) => {
+    totalDist += element.distance.value;
+    totalTime += element.duration.value;
+  });
+
+  let distancia = document.getElementById("distancia");
+  let tiempo = document.getElementById("tiempo");
+
+  tiempo.innerHTML = "<p>TIEMPO ESTIMADO: " + (totalTime / 60).toFixed(2) + " minutos</p>"
+  distancia.innerHTML = "<p> DISTANCIA TOTAL: " + (totalDist / 1000) + " km</p>";
+} 
+
 
 // FUNCION PARA MOSTRAR DIRECCIONES EN ORDEN
 function mostrarRutaEnBarraLateral(respuesta){
