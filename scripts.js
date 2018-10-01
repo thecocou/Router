@@ -93,13 +93,16 @@ function calcularTiempoyDistancia(respuesta){
   respuesta.routes[0].legs.forEach((element) => {
     totalDist += element.distance.value;
     totalTime += element.duration.value;
+    console.log(element.end_address)
+    console.log(element.distance.text);
+    console.log(element.duration.text);
   });
 
   let distancia = document.getElementById("distancia");
   let tiempo = document.getElementById("tiempo");
 
   tiempo.innerHTML = "<p>TIEMPO ESTIMADO: " + (totalTime / 60).toFixed(2) + " minutos</p>"
-  distancia.innerHTML = "<p> DISTANCIA TOTAL: " + (totalDist / 1000) + " km</p>";
+  distancia.innerHTML = "<p> DISTANCIA TOTAL: " + (totalDist / 1000).toFixed(1) + " km</p>";
 } 
 
 
