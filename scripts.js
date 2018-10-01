@@ -27,328 +27,6 @@ function cargarMapa() {
     center: {lat:-34.618356, lng:-58.433464},
     zoom: 12,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    styles: [
-      {
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#c8c8c8"
-          }
-        ]
-      },
-      {
-        "elementType": "labels.icon",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
-      },
-      {
-        "elementType": "labels.text.fill",
-        "stylers": [
-          {
-            "color": "#616161"
-          }
-        ]
-      },
-      {
-        "elementType": "labels.text.stroke",
-        "stylers": [
-          {
-            "color": "#f5f5f5"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#ff0080"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative",
-        "elementType": "geometry.fill",
-        "stylers": [
-          {
-            "color": "#ff0080"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative",
-        "elementType": "geometry.stroke",
-        "stylers": [
-          {
-            "color": "#ff0080"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative.country",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#ff0080"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative.country",
-        "elementType": "geometry.fill",
-        "stylers": [
-          {
-            "color": "#ff0080"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative.country",
-        "elementType": "geometry.stroke",
-        "stylers": [
-          {
-            "color": "#ff0080"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative.land_parcel",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#ff0080"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative.land_parcel",
-        "elementType": "geometry.fill",
-        "stylers": [
-          {
-            "color": "#ff0080"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative.land_parcel",
-        "elementType": "geometry.stroke",
-        "stylers": [
-          {
-            "color": "#ff0080"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative.land_parcel",
-        "elementType": "labels.text.fill",
-        "stylers": [
-          {
-            "color": "#bdbdbd"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative.locality",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#ff0080"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative.locality",
-        "elementType": "geometry.fill",
-        "stylers": [
-          {
-            "color": "#ff0080"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative.locality",
-        "elementType": "geometry.stroke",
-        "stylers": [
-          {
-            "color": "#ff0080"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative.neighborhood",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#ff0080"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative.neighborhood",
-        "elementType": "geometry.fill",
-        "stylers": [
-          {
-            "color": "#ff0080"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative.neighborhood",
-        "elementType": "geometry.stroke",
-        "stylers": [
-          {
-            "color": "#ff0080"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative.province",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#ff0080"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative.province",
-        "elementType": "geometry.fill",
-        "stylers": [
-          {
-            "color": "#ff0080"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative.province",
-        "elementType": "geometry.stroke",
-        "stylers": [
-          {
-            "color": "#ff0080"
-          }
-        ]
-      },
-      {
-        "featureType": "poi",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#eeeeee"
-          }
-        ]
-      },
-      {
-        "featureType": "poi",
-        "elementType": "labels.text.fill",
-        "stylers": [
-          {
-            "color": "#757575"
-          }
-        ]
-      },
-      {
-        "featureType": "poi.park",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#e5e5e5"
-          }
-        ]
-      },
-      {
-        "featureType": "poi.park",
-        "elementType": "labels.text.fill",
-        "stylers": [
-          {
-            "color": "#9e9e9e"
-          }
-        ]
-      },
-      {
-        "featureType": "road",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#ffffff"
-          }
-        ]
-      },
-      {
-        "featureType": "road.arterial",
-        "elementType": "labels.text.fill",
-        "stylers": [
-          {
-            "color": "#757575"
-          }
-        ]
-      },
-      {
-        "featureType": "road.highway",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#dadada"
-          }
-        ]
-      },
-      {
-        "featureType": "road.highway",
-        "elementType": "labels.text.fill",
-        "stylers": [
-          {
-            "color": "#616161"
-          }
-        ]
-      },
-      {
-        "featureType": "road.local",
-        "elementType": "labels.text.fill",
-        "stylers": [
-          {
-            "color": "#9e9e9e"
-          }
-        ]
-      },
-      {
-        "featureType": "transit.line",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#e5e5e5"
-          }
-        ]
-      },
-      {
-        "featureType": "transit.station",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#eeeeee"
-          }
-        ]
-      },
-      {
-        "featureType": "water",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#9f9f9f"
-          }
-        ]
-      },
-      {
-        "featureType": "water",
-        "elementType": "labels.text.fill",
-        "stylers": [
-          {
-            "color": "#9e9e9e"
-          }
-        ]
-      }
-    ],
   });
 }
 
@@ -387,7 +65,7 @@ function getWaypoints(direccion) {
 }
 
 // FUNCION PARA MOSTRAR LA RUTA
-function mostrarRutaEnMapa(directionsService, directionsDisplay, direccion, waypoint) {
+function mostrarRutaEnMapa(directionsService, directionsDisplay, direccion, waypoint, botonDistancia) {
   directionsService.route({
     origin: direccion[0],
     destination: direccion[direccion.length - 1],
@@ -399,11 +77,31 @@ function mostrarRutaEnMapa(directionsService, directionsDisplay, direccion, wayp
     if (status === 'OK') {
       directionsDisplay.setDirections(response);
       mostrarRutaEnBarraLateral(response);
+      calcularTiempoyDistancia(response);
     } else {
       alert('No es posible mostrar la ruta por lo siguiente: ' + status);
     }
   });
 }
+
+
+// FUNCION PARA MOSTRAR TIEMPO Y DISTANCIAS
+function calcularTiempoyDistancia(respuesta){
+  var totalDist = 0;
+  var totalTime = 0;
+   
+  respuesta.routes[0].legs.forEach((element) => {
+    totalDist += element.distance.value;
+    totalTime += element.duration.value;
+  });
+
+  let distancia = document.getElementById("distancia");
+  let tiempo = document.getElementById("tiempo");
+
+  tiempo.innerHTML = "<p>TIEMPO ESTIMADO: " + (totalTime / 60).toFixed(2) + " minutos</p>"
+  distancia.innerHTML = "<p> DISTANCIA TOTAL: " + (totalDist / 1000) + " km</p>";
+} 
+
 
 // FUNCION PARA MOSTRAR DIRECCIONES EN ORDEN
 function mostrarRutaEnBarraLateral(respuesta){
