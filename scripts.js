@@ -65,14 +65,17 @@ function getWaypoints(direccion) {
 }
 
 // FUNCION PARA MOSTRAR LA RUTA
-function mostrarRutaEnMapa(directionsService, directionsDisplay, direccion, waypoint, botonDistancia) {
+function mostrarRutaEnMapa(directionsService, directionsDisplay, direccion, waypoint) {
+
+  let locomocion = document.getElementById('locomocion');
+
   directionsService.route({
     origin: direccion[0],
     destination: direccion[direccion.length - 1],
     waypoints: waypoint,
     optimizeWaypoints: true,
     region: "AR",
-    travelMode: "WALKING",
+    travelMode: locomocion.checked ? "DRIVING" : "WALKING",
   }, function(response, status) {
     if (status === 'OK') {
       directionsDisplay.setDirections(response);
