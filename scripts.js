@@ -104,8 +104,8 @@ function calcularTiempoyDistancia(respuesta){
   let distancia = document.getElementById("distancia");
   let tiempo = document.getElementById("tiempo");
 
-  tiempo.innerHTML = "<p>TIEMPO ESTIMADO: " + (totalTime / 60).toFixed(0) + " minutos</p>"
-  distancia.innerHTML = "<p> DISTANCIA TOTAL: " + (totalDist / 1000).toFixed(1) + " km</p>";
+  tiempo.innerHTML = "<p>: " + (totalTime / 60).toFixed(0) + " minutos</p>"
+  distancia.innerHTML = "<p>: " + (totalDist / 1000).toFixed(1) + " km</p>";
 } 
 
 
