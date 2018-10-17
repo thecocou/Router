@@ -65,14 +65,17 @@ function getWaypoints(direccion) {
 }
 
 // FUNCION PARA MOSTRAR LA RUTA
-function mostrarRutaEnMapa(directionsService, directionsDisplay, direccion, waypoint, botonDistancia) {
+function mostrarRutaEnMapa(directionsService, directionsDisplay, direccion, waypoint) {
+
+  let locomocion = document.getElementById('locomocion');
+
   directionsService.route({
     origin: direccion[0],
     destination: direccion[direccion.length - 1],
     waypoints: waypoint,
     optimizeWaypoints: true,
     region: "AR",
-    travelMode: "WALKING",
+    travelMode: locomocion.checked ? "DRIVING" : "WALKING",
   }, function(response, status) {
     if (status === 'OK') {
       directionsDisplay.setDirections(response);
@@ -101,8 +104,11 @@ function calcularTiempoyDistancia(respuesta){
   let distancia = document.getElementById("distancia");
   let tiempo = document.getElementById("tiempo");
 
-  tiempo.innerHTML = "<p>TIEMPO ESTIMADO: " + (totalTime / 60).toFixed(0) + " minutos</p>"
-  distancia.innerHTML = "<p> DISTANCIA TOTAL: " + (totalDist / 1000).toFixed(1) + " km</p>";
+  tiempo.estimadoHoras = ((totalTime / 60) / 60).toFixed(0);
+  tiempo.estimadoMinutos = ((totalTime / 60) % 60).toFixed(0);
+
+  tiempo.innerHTML = "<p>: " + tiempo.estimadoHoras + " h " + tiempo.estimadoMinutos + " min</p>"
+  distancia.innerHTML = "<p>: " + (totalDist / 1000).toFixed(1) + " km</p>";
 } 
 
 
