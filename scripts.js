@@ -96,6 +96,7 @@ function calcularTiempoyDistancia(respuesta){
   respuesta.routes[0].legs.forEach((element) => {
     totalDist += element.distance.value;
     totalTime += element.duration.value;
+    console.log("total time: " + totalTime)
     console.log(element.end_address)
     console.log(element.distance.text);
     console.log(element.duration.text);
