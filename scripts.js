@@ -97,6 +97,7 @@ function calcularTiempoyDistancia(respuesta){
     totalDist += element.distance.value;
     totalTime += element.duration.value;
     console.log("total time: " + totalTime)
+    console.log("value " + element.duration.value)
     console.log(element.end_address)
     console.log(element.distance.text);
     console.log(element.duration.text);
