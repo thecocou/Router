@@ -96,8 +96,8 @@ function calcularTiempoyDistancia(respuesta){
   respuesta.routes[0].legs.forEach((element) => {
     totalDist += element.distance.value;
     totalTime += element.duration.value;
-    console.log("total time: " + totalTime)
-    console.log("value " + element.duration.value)
+    /*console.log("total time: " + totalTime)
+    console.log("value " + element.duration.value)*/
     console.log(element.end_address)
     console.log(element.distance.text);
     console.log(element.duration.text);
@@ -106,7 +106,7 @@ function calcularTiempoyDistancia(respuesta){
   let distancia = document.getElementById("distancia");
   let tiempo = document.getElementById("tiempo");
 
-  tiempo.estimadoHoras = ((totalTime / 60) / 60).toFixed();
+  tiempo.estimadoHoras = ((totalTime / 60) / 60).toFixed(2).slice(0, -3);
   tiempo.estimadoMinutos = ((totalTime / 60) % 60).toFixed();
 
   tiempo.innerHTML = "<p>: " + tiempo.estimadoHoras + " h " + tiempo.estimadoMinutos + " min</p>"
