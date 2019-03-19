@@ -44,7 +44,7 @@ function getDirecciones() {
 
   for (let n = 0; n < cantidadDeInputs; n++) {
     if (document.getElementById('direccion[' + n + ']').value !== "") {
-      direccion.push(document.getElementById('direccion[' + n + ']').value + ", Capital Federal");
+      direccion.push(document.getElementById('direccion[' + n + ']').value + ", CABA, Argentina");
     }
   }
   return direccion;
