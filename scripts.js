@@ -121,11 +121,11 @@ function mostrarRutaEnBarraLateral(respuesta){
   let n = 0;
   
   // agrego la direccion de salida
-  rutas.push(respuesta.routes[0].legs[0].start_address);
+  rutas.push(respuesta.routes[0].legs[0].start_address.split(',')[0]);
 
   // agrego el resto de las direcciones
   respuesta.routes[0].legs.forEach((element) => {
-      rutas.push(element.end_address);
+      rutas.push(element.end_address.split(',')[0]);
   });
 
   // agrego los inputs restantes
