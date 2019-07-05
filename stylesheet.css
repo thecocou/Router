@@ -24,7 +24,7 @@ body {
   height: inherit;
   width: inherit;
   display: grid;
-  grid-template: repeat(20, 5%) / 50px repeat(19, 5%);
+  grid-template: repeat(20, 5%) / repeat(20, 5%);
   justify-content: stretch;
   align-content: stretch;
 }
