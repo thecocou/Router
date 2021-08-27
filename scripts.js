@@ -10,22 +10,17 @@ function initRouter() {
   let inputCiudad = document.getElementById("ciudad");
   let volverButton = document.getElementById("volver");
 
-
   if (data.city == null || data.city == undefined || data.city == "") {
     animarCss("menu", "invisible", "visible");
     inputCiudad.focus();
   } else {
-    buscarCityLatLng(data.city)
+    data.latlng = buscarCityLatLng(data.city)
   }
-
- // Cargo Mapa
-  let Mapa = cargarMapa();  
+  
   // Cargo Inputs
   agregarInputs(direcciones);
-  // Cargo Direction Service
-  let Enrutador = new google.maps.DirectionsService();
-  // Cargo Directions Renderer
-  let ImpresoraDeRutas = new google.maps.DirectionsRenderer({ map: Mapa });
+  // Cargo Mapa
+  cargarMapa()
 
   // Al hacer click en buscar geocodificar la direccion
   botonEnrutar.addEventListener("click", async function () {
@@ -35,7 +30,7 @@ function initRouter() {
     let waypoints = getWaypoints(direcciones);
 
     window.scrollTo(1000, 0)
-    mostrarRutaEnMapa(Enrutador, ImpresoraDeRutas, direcciones, waypoints);
+    mostrarRutaEnMapa(data.Enrutador, data.ImpresoraDeRutas, direcciones, waypoints);
 
   });
 
@@ -66,23 +61,22 @@ function ingresarCiudad(inputCiudad) {
 
 // BUSCAR LAT Y LNG PARA LA CIUDAD ELEGIDA
 async function buscarCityLatLng(cityName) {
-  var geocoder = new google.maps.Geocoder();
-  await geocoder.geocode({ address: cityName }, function (results, status) {
-    if (status == google.maps.GeocoderStatus.OK) {
-      
-      data.latlng = {
-        lat: results[0].geometry.location.lat(),
-        lng: results[0].geometry.location.lng(),
-      };
-
-      return data.latlng;
-    } else {
-      alert(`No se encontro la ciudad ${status}`);
-    }
-  });
+  return new Promise((resolve, reject) => {
+    let geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ address: `${cityName}, Argentina` }, function (results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        resolve({
+          lat: results[0].geometry.location.lat(),
+          lng: results[0].geometry.location.lng(),
+        })
+      } else {
+        reject(alert(`No se encontro la ciudad ${status}`));
+      }
+    });
+  })
 }
 
-// FUNCION PARA AGREGAR INPUTS
+// AGREGAR INPUTS
 function agregarInputs(direcciones) {
   for (i = 0; i < 25; i++) {
     direcciones.innerHTML += 
@@ -90,7 +84,7 @@ function agregarInputs(direcciones) {
   }
 }
 
-// FUNCION PARA OBTENER LAS DIRECCIONES
+// OBTENER LAS DIRECCIONES
 function getDirecciones() {
   let direccion = [];
   cantidadDeInputs = document.getElementsByClassName("inputs").length;
@@ -105,15 +99,18 @@ function getDirecciones() {
   return direccion;
 }
 
-// FUNCION PARA INICIAR EL MAPA
-function cargarMapa() {
-  return new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -34.618356, lng: -58.433464 }, //ciudad.latlng, //
+// INICIAR EL MAPA
+async function cargarMapa() {
+  data.Map = new google.maps.Map(document.getElementById("map"), {
+    center: await data.latlng,// { lat: -34.618356, lng: -58.433464 },
     zoom: 12,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
   });
-}
 
+  data.Enrutador = new google.maps.DirectionsService();
+  data.ImpresoraDeRutas = new google.maps.DirectionsRenderer({ map: await data.Map });
+
+}
 
 // buscar Direccion de inicio
 function getInicio() {
@@ -137,7 +134,7 @@ function getFin() {
   });
 }
 
-// FUNCION PARA OBTENER WAYPOINTS
+// OBTENER WAYPOINTS
 function getWaypoints(direcciones) {
   let waypoint = [];
 
@@ -159,7 +156,7 @@ function getWaypoints(direcciones) {
   return waypoint;
 }
 
-// FUNCION PARA MOSTRAR LA RUTA
+// MOSTRAR LA RUTA
 function mostrarRutaEnMapa( directionsService, directionsDisplay, direccion, waypoint ) {
 
   let locomocion = document.getElementById("locomocion");
@@ -186,7 +183,7 @@ function mostrarRutaEnMapa( directionsService, directionsDisplay, direccion, way
   );
 }
 
-// FUNCION PARA MOSTRAR TIEMPO Y DISTANCIAS
+// MOSTRAR TIEMPO Y DISTANCIAS
 function calcularTiempoyDistancia(respuesta) {
   var totalDist = 0;
   var totalTime = 0;
@@ -210,7 +207,7 @@ function calcularTiempoyDistancia(respuesta) {
   distancia.innerHTML = `<p>: ${(totalDist / 1000).toFixed(1)} km</p>`;
 }
 
-// FUNCION PARA MOSTRAR DIRECCIONES EN ORDEN
+// MOSTRAR DIRECCIONES EN ORDEN
 function mostrarRutaEnBarraLateral(respuesta) {
   let rutas = [];
   let abc = [
@@ -292,4 +289,4 @@ function animarCss(htmlId, sacarClase, agregarClase) {
 }
 
 // ToDo:
-// Mostrar nueva ciudad guardada
+// refactor

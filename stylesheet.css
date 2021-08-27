@@ -218,7 +218,9 @@ input[class="inicioFin"] + svg {
 input[class="inicioFin"]:checked + svg {
   fill: #730ac9;
 }
-
+input[class="inicioFin"]:focus+svg {
+  fill: #9a40e4;
+}
 .radioIcono {
   height: 20px;
   padding-top: 5px;
