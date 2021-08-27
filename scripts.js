@@ -95,8 +95,10 @@ function getDirecciones() {
   cantidadDeInputs = document.getElementsByClassName("inputs").length;
 
   for (let n = 0; n < cantidadDeInputs; n++) {
-    if (document.getElementById('direccion[' + n + ']').value !== "") {
-      direccion.push(document.getElementById('direccion[' + n + ']').value + ", CABA, Argentina");
+    if (document.getElementById(`direccion[${n}]`).value !== "") {
+      direccion.push(
+        document.getElementById(`direccion[${n}]`).value + `, ${data.city}`
+      );
     }
   }
   return direccion;
@@ -218,41 +220,17 @@ function calcularTiempoyDistancia(respuesta) {
 function mostrarRutaEnBarraLateral(respuesta) {
   let rutas = [];
   let abc = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
+    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P",
+    "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
   ];
   let n = 0;
 
   // agrego la direccion de salida
-  rutas.push(respuesta.routes[0].legs[0].start_address.split(',')[0]);
+  rutas.push(respuesta.routes[0].legs[0].start_address);
 
   // agrego el resto de las direcciones
   respuesta.routes[0].legs.forEach((element) => {
-      rutas.push(element.end_address.split(',')[0]);
+    rutas.push(element.end_address);
   });
 
   // agrego los inputs restantes
@@ -268,10 +246,7 @@ function mostrarRutaEnBarraLateral(respuesta) {
   // escribo las direcciones en la barra lateral
   rutas.forEach((direccion) => {
     direcciones.innerHTML += `<p id='letras'>${abc[n]}</p>
-      <input id='direccion[${n}]' class='inputs' autocomplete='nope2' value='${direccion.substr(
-      0,
-      direccion.indexOf(",")
-    )}' type='text' onkeydown='if (event.keyCode == 13) document.getElementById("enrutar").click()'/>`;
+      <input id='direccion[${n}]' class='inputs' autocomplete='nope2' value='${direccion.substr(0, direccion.indexOf(","))}' type='text' onkeydown='if (event.keyCode == 13) document.getElementById("enrutar").click()'/>`;
 
     if (direccion !== "") {
       direcciones.innerHTML += `
