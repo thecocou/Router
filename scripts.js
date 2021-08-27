@@ -2,7 +2,6 @@
 var data = { city: localStorage.getItem("ciudad") };
 
 function initRouter() {
-
   let botonEnrutar = document.getElementById("enrutar");
   let direcciones = document.getElementById("direcciones");
   let guardarMenu = document.getElementById("guardarMenu");
@@ -14,13 +13,13 @@ function initRouter() {
     animarCss("menu", "invisible", "visible");
     inputCiudad.focus();
   } else {
-    data.latlng = buscarCityLatLng(data.city)
+    data.latlng = buscarCityLatLng(data.city);
   }
-  
+
   // Cargo Inputs
   agregarInputs(direcciones);
   // Cargo Mapa
-  cargarMapa()
+  cargarMapa();
 
   // Al hacer click en buscar geocodificar la direccion
   botonEnrutar.addEventListener("click", async function () {
@@ -29,9 +28,13 @@ function initRouter() {
     let direcciones = getDirecciones();
     let waypoints = getWaypoints(direcciones);
 
-    window.scrollTo(1000, 0)
-    mostrarRutaEnMapa(data.Enrutador, data.ImpresoraDeRutas, direcciones, waypoints);
-
+    window.scrollTo(1000, 0);
+    mostrarRutaEnMapa(
+      data.Enrutador,
+      data.ImpresoraDeRutas,
+      direcciones,
+      waypoints
+    );
   });
 
   // mostrar menu
@@ -63,24 +66,26 @@ function ingresarCiudad(inputCiudad) {
 async function buscarCityLatLng(cityName) {
   return new Promise((resolve, reject) => {
     let geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ address: `${cityName}, Argentina` }, function (results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        resolve({
-          lat: results[0].geometry.location.lat(),
-          lng: results[0].geometry.location.lng(),
-        })
-      } else {
-        reject(alert(`No se encontro la ciudad ${status}`));
+    geocoder.geocode(
+      { address: `${cityName}, Argentina` },
+      function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          resolve({
+            lat: results[0].geometry.location.lat(),
+            lng: results[0].geometry.location.lng(),
+          });
+        } else {
+          reject(alert(`No se encontro la ciudad ${status}`));
+        }
       }
-    });
-  })
+    );
+  });
 }
 
 // AGREGAR INPUTS
 function agregarInputs(direcciones) {
   for (i = 0; i < 25; i++) {
-    direcciones.innerHTML += 
-      `<input id='direccion[${i}]' class='inputs' autocomplete='ñope' placeholder='Ingrese una dirección' type='text' onkeydown='if (event.keyCode == 13) document.getElementById("enrutar").click()'/>`;
+    direcciones.innerHTML += `<input id='direccion[${i}]' class='inputs' autocomplete='ñope' placeholder='Ingrese una dirección' type='text' onkeydown='if (event.keyCode == 13) document.getElementById("enrutar").click()'/>`;
   }
 }
 
@@ -100,33 +105,34 @@ function getDirecciones() {
 // INICIAR EL MAPA
 async function cargarMapa() {
   data.Map = new google.maps.Map(document.getElementById("map"), {
-    center: await data.latlng,// { lat: -34.618356, lng: -58.433464 },
+    center: await data.latlng, // { lat: -34.618356, lng: -58.433464 },
     zoom: 12,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
   });
 
   data.Enrutador = new google.maps.DirectionsService();
-  data.ImpresoraDeRutas = new google.maps.DirectionsRenderer({ map: await data.Map });
-
+  data.ImpresoraDeRutas = new google.maps.DirectionsRenderer({
+    map: await data.Map,
+  });
 }
 
 // buscar Direccion de inicio
 function getInicio() {
-  data.inicio = 'none'
+  data.inicio = "none";
   let inputsInicio = document.getElementsByName("inicio");
   inputsInicio.forEach((input) => {
     if (input.checked) {
-      data.inicio = parseInt((input.id).split("-")[1])
+      data.inicio = parseInt(input.id.split("-")[1]);
     }
   });
 }
 
 // buscar Direccion de fin
 function getFin() {
-  data.fin = 'none';
+  data.fin = "none";
   let inputsFin = document.getElementsByName("fin");
   inputsFin.forEach((input) => {
-    if(input.checked) {
+    if (input.checked) {
       data.fin = parseInt(input.id.split("-")[1]);
     }
   });
@@ -136,11 +142,11 @@ function getFin() {
 function getWaypoints(direcciones) {
   let waypoint = [];
 
-  if(data.inicio === 'none') {
+  if (data.inicio === "none") {
     data.inicio = 0;
   }
-  if(data.fin === 'none') {
-    data.fin = direcciones.length -1;
+  if (data.fin === "none") {
+    data.fin = direcciones.length - 1;
   }
 
   let n = 0;
@@ -148,15 +154,19 @@ function getWaypoints(direcciones) {
     for (let n = 0; n < direcciones.length; n++) {
       if (data.inicio !== n && data.fin !== n) {
         waypoint.push({ location: direcciones[n] });
-      }  
+      }
     }
   }
   return waypoint;
 }
 
 // MOSTRAR LA RUTA
-function mostrarRutaEnMapa( directionsService, directionsDisplay, direccion, waypoint ) {
-
+function mostrarRutaEnMapa(
+  directionsService,
+  directionsDisplay,
+  direccion,
+  waypoint
+) {
   let locomocion = document.getElementById("locomocion");
 
   directionsService.route(
@@ -200,8 +210,7 @@ function calcularTiempoyDistancia(respuesta) {
   tiempo.estimadoHoras = (totalTime / 60 / 60).toFixed(0);
   tiempo.estimadoMinutos = ((totalTime / 60) % 60).toFixed(0);
 
-  tiempo.innerHTML =
-    `<p>: ${tiempo.estimadoHoras} h ${tiempo.estimadoMinutos} min</p>`;
+  tiempo.innerHTML = `<p>: ${tiempo.estimadoHoras} h ${tiempo.estimadoMinutos} min</p>`;
   distancia.innerHTML = `<p>: ${(totalDist / 1000).toFixed(1)} km</p>`;
 }
 
@@ -209,8 +218,32 @@ function calcularTiempoyDistancia(respuesta) {
 function mostrarRutaEnBarraLateral(respuesta) {
   let rutas = [];
   let abc = [
-    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P",
-    "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
   ];
   let n = 0;
 
@@ -234,12 +267,14 @@ function mostrarRutaEnBarraLateral(respuesta) {
 
   // escribo las direcciones en la barra lateral
   rutas.forEach((direccion) => {
-    direcciones.innerHTML +=
-      `<p id='letras'>${abc[n]}</p>
-      <input id='direccion[${n}]' class='inputs' autocomplete='nope2' value='${direccion.substr(0, direccion.indexOf(","))}' type='text' onkeydown='if (event.keyCode == 13) document.getElementById("enrutar").click()'/>`
-      
-      if(direccion !== '') {
-        direcciones.innerHTML += `
+    direcciones.innerHTML += `<p id='letras'>${abc[n]}</p>
+      <input id='direccion[${n}]' class='inputs' autocomplete='nope2' value='${direccion.substr(
+      0,
+      direccion.indexOf(",")
+    )}' type='text' onkeydown='if (event.keyCode == 13) document.getElementById("enrutar").click()'/>`;
+
+    if (direccion !== "") {
+      direcciones.innerHTML += `
         <label class="label-inicioFin" for="inicio-${n}">
         <input type="radio" class="inicioFin" name="inicio" id="inicio-${n}">
             <svg class="radioIcono" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.63 8.9">
@@ -268,7 +303,7 @@ function mostrarRutaEnBarraLateral(respuesta) {
             </svg>
           </label>
           `;
-      }
+    }
     n++;
   });
 }
