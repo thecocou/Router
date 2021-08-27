@@ -252,11 +252,7 @@ function mostrarRutaEnBarraLateral(respuesta) {
 
   // agrego el resto de las direcciones
   respuesta.routes[0].legs.forEach((element) => {
-<<<<<<< HEAD
-    rutas.push(element.end_address);
-=======
       rutas.push(element.end_address.split(',')[0]);
->>>>>>> 0d4bb11d603d928242f2767afe72ef1e234d4c5b
   });
 
   // agrego los inputs restantes
