@@ -2,11 +2,14 @@
 var data = { city: localStorage.getItem("ciudad") };
 
 function initRouter() {
+
   let botonEnrutar = document.getElementById("enrutar");
   let direcciones = document.getElementById("direcciones");
   let guardarMenu = document.getElementById("guardarMenu");
   let menuButton = document.getElementById("menuButton");
   let inputCiudad = document.getElementById("ciudad");
+  let volverButton = document.getElementById("volver");
+
 
   if (data.city == null || data.city == undefined || data.city == "") {
     animarCss("menu", "invisible", "visible");
@@ -31,12 +34,19 @@ function initRouter() {
     let direcciones = getDirecciones();
     let waypoints = getWaypoints(direcciones);
 
+    window.scrollTo(1000, 0)
     mostrarRutaEnMapa(Enrutador, ImpresoraDeRutas, direcciones, waypoints);
+
   });
 
   // mostrar menu
   menuButton.addEventListener("click", function () {
     animarCss("menu", "invisible", "visible");
+  });
+
+  // volver a la barra de direcciones
+  volverButton.addEventListener("click", function () {
+    window.scrollTo(0, 0);
   });
 
   // guardar nueva ciudad
