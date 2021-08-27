@@ -156,10 +156,6 @@ function getWaypoints(direcciones) {
       }  
     }
   }
-
-  console.log(direcciones);
-  console.log(waypoint);
-
   return waypoint;
 }
 
@@ -167,9 +163,6 @@ function getWaypoints(direcciones) {
 function mostrarRutaEnMapa( directionsService, directionsDisplay, direccion, waypoint ) {
 
   let locomocion = document.getElementById("locomocion");
-
-    console.log(data.inicio);
-    console.log(data.fin);
 
   directionsService.route(
     {
@@ -202,9 +195,8 @@ function calcularTiempoyDistancia(respuesta) {
     totalDist += element.distance.value;
     totalTime += element.duration.value;
     /*    console.log(element.end_address)
-    console.log(element.distance.text);
-    console.log(element.duration.text);
-*/
+          console.log(element.distance.text);
+          console.log(element.duration.text);*/
   });
 
   let distancia = document.getElementById("distancia");
@@ -300,4 +292,4 @@ function animarCss(htmlId, sacarClase, agregarClase) {
 }
 
 // ToDo:
-// Seleccionar automaticamente las direcciones mas alejadas para usarlas como inicio y fin de la ruta.
+// Mostrar nueva ciudad guardada
