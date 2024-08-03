@@ -184,13 +184,11 @@ function generarEnlaceGoogleMaps(response) {
     const end = route.legs[route.legs.length - 1].end_address;
 
     // Extraer los waypoints intermedios, si existen
-    let waypoints = '';
-    if (route.legs.length > 2) {
-      for (let i = 1; i < route.legs.length; i++) {
-        waypoints += encodeURIComponent(route.legs[i].start_address) + "|";
-      }
-      waypoints = waypoints.slice(0, -1); // Eliminar el último '|'
+    let waypoints = "";
+    for (let i = 1; i < route.legs.length; i++) {
+      waypoints += encodeURIComponent(route.legs[i].start_address) + "|";
     }
+    waypoints = waypoints.slice(0, -1); // Eliminar el último '|'
 
     // Construir el enlace
     googleMapsLink = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(
