@@ -38,7 +38,7 @@ header {
   justify-content: center;
   align-content: center;
   display: grid;
-  grid-template: 1fr / 100px 240px  1fr 1fr 30px;
+  grid-template: 1fr / 100px 240px  1fr 1fr 100px;
   padding: 15px;
 }
 
@@ -47,17 +47,24 @@ header {
   color: white;
   justify-self: center;
   align-items: center;
+  width: 100%;
+}
+
+#menues {
+  display: flex;
+  justify-self: center;
+  align-items: center;
 }
 
 #walkIcon,
-#carIcon,
-#logo {
+#carIcon {
   padding: 10px;
 }
 
-#logo {
+#logoImg {
   height: 50px;
   width: 100px;
+  padding: 10px;
   align-self: center;
   justify-self: left;
 }
@@ -86,6 +93,14 @@ header {
   padding: 5px;
 }
 
+#openGoogleMaps {
+  align-self: center;
+  justify-self: start;
+  cursor: pointer;
+  margin-right: 30px;
+  width: 24px;
+  height: 24px;
+}
 #menuButton {
   align-self: center;
   justify-self: end;
@@ -350,7 +365,7 @@ input[class="inicioFin"]:focus+svg {
   }
 
   header {
-    grid-template: 1fr / 30vw 70vw 1fr 1fr 30px;
+    grid-template: 1fr / 30vw 70vw 1fr 1fr 80px;
     padding: 15px;
   }
 
@@ -369,10 +384,14 @@ input[class="inicioFin"]:focus+svg {
     z-index: 20;
     border-radius: 8px;
     display: grid;
+    position: fixed;
+    left: 20px;
+    top: 150px;
+    /*
     justify-self: flex-end;
     margin-right: 5vw;
     align-items: center;
-    justify-items: center;
+    justify-items: center;*/
   }
 
   #map {

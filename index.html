@@ -16,7 +16,10 @@
 	<body>
 		<div id="sitio">
 			<header>
-				<img id="logo" src="img/logozoner2.png" />
+				<a id="logo" class="button" href="/">
+					<img id="logoImg" src="img/logozoner2.png" alt="Router"/>
+				</a>
+
 				<div id="opciones">
 					<div id="walkIcon">
 						<svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
@@ -62,11 +65,19 @@
 					</svg>
 					<div id="distancia"></div>
 				</div>
+				
+				<div id="menues">			
+					<svg xmlns="http://www.w3.org/2000/svg" id="openGoogleMaps" fill="#ffffff" viewBox="0 0 24 24">
+						<polyline id="primary" points="17 3 21 3 21 7" style="fill: none; stroke: #ffffff; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"/>
+						<line id="primary-2" data-name="primary" x1="11" y1="13" x2="21" y2="3" style="fill: none; stroke: #ffffff; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"/>
+						<path id="primary-3" data-name="primary" d="M19,13.89V20a1,1,0,0,1-1,1H4a1,1,0,0,1-1-1V6A1,1,0,0,1,4,5h6.11" style="fill: none; stroke: #ffffff; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"/>
+					</svg>
 
-				<svg id="menuButton" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-					<path d="M0 0h24v24H0z" fill="none" />
-					<path fill="#ffffff" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
-				</svg>
+					<svg id="menuButton" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+						<path d="M0 0h24v24H0z" fill="none" />
+						<path fill="#ffffff" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+					</svg>
+				</div>
 
 			</header>
 			<!-- Barra lateral -->

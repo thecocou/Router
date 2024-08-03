@@ -8,6 +8,7 @@ function initRouter() {
   let menuButton = document.getElementById("menuButton");
   let inputCiudad = document.getElementById("ciudad");
   let volverButton = document.getElementById("volver");
+  let exportar = document.getElementById("openGoogleMaps");
 
   if (data.city == null || data.city == undefined || data.city == "") {
     animarCss("menu", "invisible", "visible");
@@ -29,6 +30,7 @@ function initRouter() {
     let waypoints = getWaypoints(direcciones);
 
     window.scrollTo(1000, 0);
+
     mostrarRutaEnMapa(
       data.Enrutador,
       data.ImpresoraDeRutas,
@@ -40,6 +42,7 @@ function initRouter() {
   // mostrar menu
   menuButton.addEventListener("click", function () {
     animarCss("menu", "invisible", "visible");
+    window.scrollTo(0, 0);
   });
 
   // volver a la barra de direcciones
@@ -50,6 +53,15 @@ function initRouter() {
   // guardar nueva ciudad
   guardarMenu.addEventListener("click", function () {
     ingresarCiudad(inputCiudad.value);
+  });
+
+  // ABRIR EN GOOGLE MAPS
+  exportar.addEventListener("click", function () {
+    if (googleMapsLink) {
+      window.open(googleMapsLink, "_blank");
+    } else {
+      alert("Primero debes calcular una ruta para generar el enlace.");
+    }
   });
 }
 
@@ -162,6 +174,41 @@ function getWaypoints(direcciones) {
   return waypoint;
 }
 
+let googleMapsLink = "";
+
+// Función para generar el enlace de Google Maps con la ruta
+function generarEnlaceGoogleMaps(response) {
+  if (response.routes.length > 0) {
+    const route = response.routes[0];
+    const start = route.legs[0].start_address;
+    const end = route.legs[route.legs.length - 1].end_address;
+
+    // Extraer los waypoints intermedios, si existen
+    let waypoints = '';
+    if (route.legs.length > 2) {
+      for (let i = 1; i < route.legs.length - 1; i++) {
+        waypoints += encodeURIComponent(route.legs[i].start_address) + '|';
+      }
+      waypoints = waypoints.slice(0, -1); // Eliminar el último '|'
+    }
+
+    // Construir el enlace
+    googleMapsLink = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(
+      start
+    )}&destination=${encodeURIComponent(end)}&travelmode=${
+      document.getElementById("locomocion").checked ? "DRIVING" : "WALKING"
+    }&waypoints=${waypoints}`;
+
+    // Mostrar o utilizar el enlace, por ejemplo:
+    console.log("Enlace para abrir en Google Maps:", googleMapsLink);
+    // window.open(googleMapsLink, '_blank'); // Abre el enlace en una nueva pestaña
+  } else {
+    alert("No se encontraron rutas para generar el enlace de Google Maps.");
+  }
+}
+
+
+
 // MOSTRAR LA RUTA
 function mostrarRutaEnMapa(
   directionsService,
@@ -185,6 +232,7 @@ function mostrarRutaEnMapa(
         directionsDisplay.setDirections(response);
         mostrarRutaEnBarraLateral(response);
         calcularTiempoyDistancia(response);
+        generarEnlaceGoogleMaps(response); // Llama a la nueva función
       } else {
         alert(`No es posible mostrar la ruta: ${status}`);
         animarCss("menu", "invisible", "visible");
